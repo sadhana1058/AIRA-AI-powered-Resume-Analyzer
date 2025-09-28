@@ -17,6 +17,7 @@ export default function Home() {
   return <main className="bg-[url('public/images/bg-main.svg')] bg-cover">
     
     <Navbar/>
+    
     <section className = "main-section">
       <div className="pageHeading">
         <h1>Track you Applications and Resume Ratings</h1>
