@@ -4,7 +4,6 @@ interface Job {
     location: string;
     requiredSkills: string[];
   }
-  
   interface Resume {
     id: string;
     companyName?: string;
