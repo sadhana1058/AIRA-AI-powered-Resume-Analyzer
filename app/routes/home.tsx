@@ -25,9 +25,7 @@ export default function Home() {
           in one place  with AI powered feedback.</h2>
       </div>
 
-    </section>
-
-    {resumes && resumes.length>0 &&(
+      {resumes && resumes.length>0 &&(
       <div className = "resumes-section">
 
         {resumes.map((resume) => (
@@ -35,6 +33,9 @@ export default function Home() {
         ))}
       </div>
     )}
+    </section>
+
+  
   
     
       {/* // <div>
