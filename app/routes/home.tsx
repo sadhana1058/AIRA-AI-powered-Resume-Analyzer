@@ -2,6 +2,9 @@ import Navbar from "~/components/Navbar";
 import type { Route } from "./+types/home";
 import { resumes } from "~/constants";
 import ResumeCard from "~/components/ResumeCard";
+import { usePuterStore } from "~/lib/puter";
+import { useLocation, useNavigate } from "react-router";
+import { useEffect } from "react";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -12,6 +15,20 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const { auth } = usePuterStore();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const next = location.search.split('next=')[1];
+
+
+  useEffect(()=>{
+    // when the user has not logged in that means unauthenticated then ask him to logiin to view our home page
+    
+    if (!auth.isAuthenticated){
+      navigate('/auth?next=/')
+
+    }
+  },[auth.isAuthenticated])
   
 
   return <main className="bg-[url('public/images/bg-main.svg')] bg-cover">
