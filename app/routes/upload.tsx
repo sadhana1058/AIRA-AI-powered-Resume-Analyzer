@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
+import FileUploader from '~/components/FileUploader'
 import Navbar from '~/components/Navbar'
 import { usePuterStore } from '~/lib/puter'
 
 const upload = () => {
   const [isProcessing, setIsProcessing ] =useState(false)
+  const [statusText, setStatusText] = useState('success');
+  const [file, setFile] = useState<File | null>(null);
+  const navigate = useNavigate();
+  const handleFileSelect = (file: File | null) => {
+    setFile(file)
+}
     const {auth} = usePuterStore()
     const handleAnalyze = () => {
       setIsProcessing(true);
@@ -22,7 +30,7 @@ const upload = () => {
       <h1 >Smart feedback for your dream job</h1>
       {isProcessing ? (
                         <>
-                            <h2>hi</h2>
+                            <h2>{statusText}</h2>
                             <img src="/images/resume-scan.gif" className="w-full" />
                         </>
                     ) : (
@@ -43,10 +51,10 @@ const upload = () => {
                                 <textarea rows={20} name="job-description" placeholder="Job Description" id="job-description" />
                             </div>
 
-                            {/* <div className="form-div">
+                            <div className="form-div">
                                 <label htmlFor="uploader">Upload Resume</label>
-                                <FileUploader onFileSelect={handleFileSelect} />
-                            </div> */}
+                                <FileUploader  />
+                            </div>
 
                             <button className="primary-button" type="submit">
                                 Analyze Resume
